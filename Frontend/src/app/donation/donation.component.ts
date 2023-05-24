@@ -18,11 +18,11 @@ export class DonationComponent implements OnInit {
   constructor(private fB: FormBuilder, private api: DonationService) {}
   ngOnInit(): void {
     this.formValues = this.fB.group({
-      donar_id: ['', Validators.required],
-      ngo_id: ['', Validators.required],
-      donation_type: ['', Validators.required],
-      amount: ['', Validators.required],
-      donation_date: ['', Validators.required],
+      donar_id: [],
+      ngo_id: [],
+      donation_type: [],
+      amount: [],
+      donation_date: [],
     });
     // write your logic here
   }

@@ -39,7 +39,7 @@ describe('DonarComponent',()=>{
 
   
 
-  describe("business", ()=>{
+  describe("functional", ()=>{
     it("should create the Donation Component", () => {
       const fixt = new DonorComponent(formBuilderMock,serviceMock);
       expect(fixt).toBeTruthy();

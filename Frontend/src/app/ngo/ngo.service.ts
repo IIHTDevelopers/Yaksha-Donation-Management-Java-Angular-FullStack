@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class NgoService {
-  API_URL = 'http://127.0.0.1:8081/donation-management-system/ngos';
+  API_URL = '';
 
   constructor(private http: HttpClient) {}
 

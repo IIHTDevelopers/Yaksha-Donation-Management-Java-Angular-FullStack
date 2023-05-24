@@ -18,13 +18,13 @@ export class DonorComponent implements OnInit {
 
   ngOnInit(): void {
     this.formValues = this.fB.group({
-      ngo_id: ['', Validators.required],
-      donar_name: ['', Validators.required],
-      username: ['', Validators.required],
-      password: ['', Validators.required],
-      address: ['', Validators.required],
-      phone_number: ['', Validators.required],
-      email_id: ['', Validators.required],
+      ngo_id: [],
+      donar_name: [],
+      username: [],
+      password: [],
+      address: [],
+      phone_number: [],
+      email_id: [],
     });
     // write your logic here
   }

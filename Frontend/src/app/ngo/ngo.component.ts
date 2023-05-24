@@ -18,13 +18,13 @@ export class NgoComponent implements OnInit {
 
   ngOnInit(): void {
     this.formValues = this.fB.group({
-      ngo_name: ['', Validators.required],
-      username: ['', Validators.required],
-      password: ['', Validators.required],
-      address: ['', Validators.required],
-      phone_number: ['', Validators.required],
-      started_in: ['', Validators.required],
-      documents: ['', Validators.required],
+      ngo_name: [],
+      username: [],
+      password: [],
+      address: [],
+      phone_number: [],
+      started_in: [],
+      documents: [],
     });
     // write your logic here
   }

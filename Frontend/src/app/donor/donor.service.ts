@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class DonorService {
-  API_URL = 'http://127.0.0.1:8081/donation-management-system/donars';
+  API_URL = '';
 
   constructor(private http: HttpClient) {}
 

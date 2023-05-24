@@ -5,7 +5,7 @@ describe('AppComponent', () => {
   beforeEach(() => {
     fixture = new AppComponent();
   });
-  describe("business", ()=>{
+  describe("functional", ()=>{
   it('should have a title AngularFrontEnd', () => {
     expect(fixture.title).toEqual('AngularFrontEnd');
   });

@@ -40,7 +40,7 @@ describe('NgoComponent',()=>{
 
   
 
-  describe("business", ()=>{
+  describe("functional", ()=>{
     it("should create the Dgo Component", () => {
       const fixt = new NgoComponent(formBuilderMock,serviceMock);
       expect(fixt).toBeTruthy();

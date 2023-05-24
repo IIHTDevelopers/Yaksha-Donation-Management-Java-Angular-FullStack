@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgoService } from './ngo.service';
+import { Ngo } from './ngo';
 
 @Component({
   selector: 'app-ngo',
@@ -6,7 +9,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ngo.component.css'],
 })
 export class NgoComponent implements OnInit {
+  formValues!: FormGroup;
+  modelObj: Ngo = new Ngo();
+  allData: Ngo[] = [];
+  showAdd!: boolean;
+  showUpdate!: boolean;
+  constructor(private fB: FormBuilder, private api: NgoService) {}
+
   ngOnInit(): void {
+    this.formValues = this.fB.group({
+      ngo_name: ['', Validators.required],
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+      address: ['', Validators.required],
+      phone_number: ['', Validators.required],
+      started_in: ['', Validators.required],
+      documents: ['', Validators.required],
+    });
     // write your logic here
   }
 

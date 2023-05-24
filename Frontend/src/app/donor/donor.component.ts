@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Donor } from './donor';
+import { DonorService } from './donor.service';
 
 @Component({
   selector: 'app-donor',
@@ -6,7 +9,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./donor.component.css'],
 })
 export class DonorComponent implements OnInit {
+  formValues!: FormGroup;
+  modelObj: Donor = new Donor();
+  allData: Donor[] = [];
+  showAdd!: boolean;
+  showUpdate!: boolean;
+  constructor(private fB: FormBuilder, private api: DonorService) {}
+
   ngOnInit(): void {
+    this.formValues = this.fB.group({
+      ngo_id: ['', Validators.required],
+      donar_name: ['', Validators.required],
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+      address: ['', Validators.required],
+      phone_number: ['', Validators.required],
+      email_id: ['', Validators.required],
+    });
     // write your logic here
   }
 

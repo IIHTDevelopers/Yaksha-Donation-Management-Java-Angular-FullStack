@@ -38,10 +38,7 @@ describe('NgoComponent',()=>{
     fixture.detectChanges();
   });
 
-  it("should create Donation Component", () => {
-    expect(component).toBeTruthy();
-    expect(component).toBeDefined();
-  });
+  
 
   describe("business", ()=>{
     it("should create the Dgo Component", () => {

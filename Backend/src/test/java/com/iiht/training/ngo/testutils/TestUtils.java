@@ -1,9 +1,12 @@
 package com.iiht.training.ngo.testutils;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -46,9 +49,7 @@ public class TestUtils {
 
 		testResult = "";
 
-//			xmlFile = new File("./Notes-app-boot-mysql.xml");
-//			xmlFile.delete();
-//			
+
 		businessTestFile = new File("./output_revised.txt");
 		businessTestFile.delete();
 
@@ -92,30 +93,49 @@ public class TestUtils {
 			testCaseResults.put(GUID,
 					new TestCaseResultDto(testName, testType, 1, resultScore, resultStatus, true, ""));
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
 		testResults.setTestCaseResults(asJsonString(testCaseResults));
 		testResults.setCustomData(customData);
 
-		String finalResult = asJsonString(testResults);
 		
-		try{
+try {
 
-		URL url = new URL(URL);
-		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-		conn.setDoOutput(true);
-		conn.setRequestMethod("POST");
-		conn.setRequestProperty("Content-Type", "application/json");
+	URL url = new URL(URL);
+	HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+	conn.setDoOutput(true);
+	conn.setRequestMethod("POST");
+	conn.setRequestProperty("Content-Type", "application/json");
 
-		String input = asJsonString(testResults);
-		System.out.println("Final Data : " + input);
-		OutputStream os = conn.getOutputStream();
-		os.write(input.getBytes());
-		os.flush();
+//	String input = "{\"qty\":100,\"name\":\"iPad 4\"}";
+	String input = asJsonString(testResults);
+	OutputStream os = conn.getOutputStream();
+	os.write(input.getBytes());
+	os.flush();
 
-		
+	
+	BufferedReader br = new BufferedReader(new InputStreamReader(
+			(conn.getInputStream())));
+
+	String output;
+	while ((output = br.readLine()) != null) {
+		System.out.println(output);
+	}
+
+	conn.disconnect();
+
+  } catch (MalformedURLException e) {
+
+	e.printStackTrace();
+
+  } catch (IOException e) {
+
+	e.printStackTrace();
+
+ }	
+
 
 		total++;
 		String[] r = testName.split("(?=\\p{Upper})");
@@ -133,24 +153,25 @@ public class TestUtils {
 		
 		if (result.toString().equals("true")) {
 			System.out.println(GREEN_BOLD_BRIGHT + "PASSED" + TEXT_RESET);
-			
 			passed++;
 		} else {
 			System.out.println(RED_BOLD_BRIGHT + "FAILED" + TEXT_RESET);
-			
 			failed++;
-		}
-		}catch(Exception ex){
-			System.out.println(ex);	
 		}
 	}
 
-	public static void testReport(){
-System.out.print("\n" + BLUE_BOLD_BRIGHT + "TEST CASES EVALUATED : " + total + TEXT_RESET);
-System.out.print("\n" + GREEN_BOLD_BRIGHT + "PASSED : " + passed + TEXT_RESET);
-System.out.println("\n" + RED_BOLD_BRIGHT + "FAILED : " + failed + TEXT_RESET);
-}
+	public static void testReport() {
 
+		 System.out.print("\n" + BLUE_BOLD_BRIGHT + "TEST CASES EVALUATED : " + total
+		 + TEXT_RESET);
+		 System.out.print("\n" + GREEN_BOLD_BRIGHT + "PASSED : " + passed +
+		 TEXT_RESET);
+		 System.out.println("\n" + RED_BOLD_BRIGHT + "FAILED : " + failed +
+		 TEXT_RESET);
+
+	}
+
+	
 	public static String currentTest() {
 		return Thread.currentThread().getStackTrace()[2].getMethodName();
 	}
@@ -162,7 +183,7 @@ System.out.println("\n" + RED_BOLD_BRIGHT + "FAILED : " + failed + TEXT_RESET);
 		try {
 			jsonString = mapper.writeValueAsString(obj);
 		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		return jsonString;

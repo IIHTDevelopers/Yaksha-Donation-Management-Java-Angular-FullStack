@@ -101,7 +101,7 @@ public class TestUtils {
 
 		String finalResult = asJsonString(testResults);
 		
-
+		try{
 
 		URL url = new URL(URL);
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -110,7 +110,7 @@ public class TestUtils {
 		conn.setRequestProperty("Content-Type", "application/json");
 
 		String input = asJsonString(testResults);
-
+		System.out.println("Final Data : " + input);
 		OutputStream os = conn.getOutputStream();
 		os.write(input.getBytes());
 		os.flush();
@@ -140,7 +140,9 @@ public class TestUtils {
 			
 			failed++;
 		}
-
+		}catch(Exception ex){
+			System.out.println(ex);	
+		}
 	}
 
 	public static void testReport(){
